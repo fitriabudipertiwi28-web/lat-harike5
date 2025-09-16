@@ -1,67 +1,42 @@
 const prompt = require("prompt-sync")({ sigint: true });
 
-let absen = [
-    { nama: "Fitria", alamat: "Garut", HP: "089656906165" }
-];
+let dataSiswa=[{
+    nama : 'Fitria',
+    alamat : 'garut',
+    telepon : '089656906165'
+},
+{
+    nama : 'Siti',
+    alamat : 'Leles',
+    telepon : '0895412545265'
+}];
 
-console.log("Hai~Selamat Datang di Program Data Siswa PBL Node.js dan React");
+let menu;
+//1. Tampilan Data
+do { console.log('Pilihan menu : 1= Tambah Data, 2= Tampilan Data, 3= Hapus Data, 4= Cari Data');
+    menu = prompt('Masukan no sesuai menu yang ingin dipilih : ');
+    switch (menu){
+        case '1':
+    let nama = prompt('Massukan nama siswa : ');
+    let alamat = prompt('Massukan alamat : ');
+    let telepon = prompt('Massukan telepon : ')
 
-let pilihan;
+    dataSiswa.push({nama, alamat, telepon});
+    console.log(dataSiswa);
+break;
 
-do {
-    console.log("\nMenu:");
-    console.log("1. Tampilkan Data");
-    console.log("2. Tambah Data");
-    console.log("3. Hapus Data");
-    console.log("4. Cari Data");
-    console.log("5. Keluar");
+//2. Tambah data
+case '2':
+    console.log('\nData siswa');
+    dataSiswa.forEach(ds => {
+    console.log(`${ds.nama} beralamat di ${ds.alamat} dengan no telepon ${ds.telepon}`);
 
-    pilihan = prompt("Masukkan pilihan (1-5): ");
+    });
+break;
 
-    switch (pilihan) {
-        case "1":
-            console.log("\nData Siswa:");
-            absen.forEach((siswa, index) => {
-                console.log(`${index + 1}. Nama: ${siswa.nama}, Alamat: ${siswa.alamat}, HP: ${siswa.HP}`);
-            });
-            break;
+//3. Hapus data
+case '3':
 
-        case "2":
-            let namaBaru = prompt("Masukkan Nama: ");
-            let alamatBaru = prompt("Masukkan Alamat: ");
-            let HPBaru = prompt("Masukkan HP: ");
-            absen.push({ nama:namaBaru, alamat:alamatBaru, HP:HPBaru });
-            console.log(`Data ${namaBaru} berhasil ditambahkan!`);
-            break;
-
-        case "3":
-            let hapusIndex = prompt("Masukkan nomor data yang ingin dihapus: ") - 1;
-            if (hapusIndex >= 0 && hapusIndex < absen.length) {
-                let hapusNama = absen[hapusIndex].nama;
-                absen.splice(hapusIndex, 1);
-                console.log(`Data ${hapusNama} berhasil dihapus!`);
-            } else {
-                console.log("Nomor data tidak valid!");
-            }
-            break;
-
-        case "4":
-            let cariNama = prompt("Masukkan nama yang ingin dicari: ");
-            let hasil = absen.filter(siswa => siswa.nama.toLowerCase() === cariNama.toLowerCase());
-            if (hasil.length > 0) {
-                console.log("Data ditemukan:");
-                hasil.forEach(siswa => console.log(`Nama: ${siswa.nama}, Alamat: ${siswa.alamat}, HP: ${siswa.HP}`));
-            } else {
-                console.log("Data tidak ditemukan!");
-            }
-            break;
-
-        case "5":
-            console.log("Terima kasih telah menggunakan program!");
-            break;
-
-        default:
-            console.log("Pilihan tidak valid! Silakan pilih 1-5.");
-    }
-
-} while (pilihan !== "5");
+//4. Cari data
+case '4':
+    let cariNama= prompt('Masukan nama')

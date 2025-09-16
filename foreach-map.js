@@ -6,3 +6,4 @@ angka.forEach (num => {
 /* map */
 let hasil=angka.map (num => num *2 );
 console.log(hasil);
+
